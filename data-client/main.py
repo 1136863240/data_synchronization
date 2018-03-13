@@ -60,6 +60,15 @@ def main():
         file_index = file_index + 1
     socket_server.close()
 
+    # 查找现有的文件列表
+    # 将不存在的文件删除
+    target_file_list = os.listdir(target_dir)
+    for file_item in target_file_list:
+        if file_item not in receive_list:
+            del_file = '%s/%s' % (target_dir, file_item)
+            print('删除文件：%s' % del_file)
+            os.unlink(del_file)
+
 
 if __name__ == '__main__':
     main()

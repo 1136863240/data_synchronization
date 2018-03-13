@@ -29,8 +29,8 @@ def main():
         print('初始化失败：未定义源目录路径')
     src_dir = sys.argv[1]
     socket_server = socket.socket()
-    socket_server.bind(('192.168.1.104', 20183))
-    # socket_server.bind(('127.0.0.1', 20183))
+    # socket_server.bind(('192.168.1.104', 20183))
+    socket_server.bind(('127.0.0.1', 20183))
     # socket_server.bind(('192.168.42.171', 20183))
     socket_server.listen(1)
     print('初始化完毕，等待客户端连接')

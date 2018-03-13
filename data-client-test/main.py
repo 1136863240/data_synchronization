@@ -13,7 +13,7 @@ def main():
     print('客户端启动')
     # android_system.makeToast('客户端启动')
     # server_ip = android_system.dialogGetInput('连接服务器', '服务器IP地址').result
-    server_ip = '192.168.1.104'
+    server_ip = '127.0.0.1'
     print('正在连接服务器：%s' % server_ip)
     # android_system.makeToast('正在连接服务器')
     socket_server = socket.socket()
@@ -23,7 +23,7 @@ def main():
     # target_dir = '/storage/9017-100F/Pictures/pic'
     # target_dir = '/storage/emulated/0/test'
     # target_dir = 'd:/project/test1'
-    target_dir = 'C:/Users/Lee/Desktop/test1'
+    target_dir = 'C:\\Users\\Administrator\\Desktop\\test1'
     current_file = None
     file_name = ''
     file_index = 1
@@ -63,6 +63,15 @@ def main():
             socket_server.sendall(bytes('closed', 'utf-8'))
         file_index = file_index + 1
     socket_server.close()
+
+    # 查找现有的文件列表
+    # 将不存在的文件删除
+    target_file_list = os.listdir(target_dir)
+    for file_item in target_file_list:
+        if file_item not in receive_list:
+            del_file = '%s/%s' % (target_dir, file_item)
+            print('删除文件：%s' % del_file)
+            os.unlink(del_file)
 
 
 if __name__ == '__main__':
